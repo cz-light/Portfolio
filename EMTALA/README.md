@@ -1,6 +1,5 @@
 Background: 
 - python librairies used: requests, bs4, openai, os, json, chromadb, dotenv
-- data source: https://www.cms.gov/medicare/enforcement-actions/emtala-fraud-cases
 - purpose: create a vector db of emtala fraud cases to be queried by an agent as the website is hard to navigate and search through
 
 Pipeline steps:
