@@ -36,5 +36,9 @@ Pipeline steps:
     * Input: user query
     * Output: answer to user query with context from vector db
 
+To Run:
+1) load a .env file into the src and declare an openai key
+2) run main.py file
+
 
 
