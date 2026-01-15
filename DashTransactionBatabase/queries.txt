@@ -1,0 +1,91 @@
+
+
+Query 1: Find the top miners (find the miners and their information that have mined more than two blocks, sort in descending order)
+
+Business Use: Finding the top miners is good for a number of reasons. One, it will help ensure the network is still decentralized. If there is a miner or multiple miners that have major control of the blocks or mining, then it means the network is becoming decentralized and less secure. Two, We can use it to identify the top miners to reward them and incentivize miners with lower or no blocks mined.
+
+SELECT 
+    U.PUBLIC_KEY,
+    U.USER_TYPE,
+    U.BALANCE,
+    COUNT(B.HASH) AS total_blocks_mined,
+    SUM(B.BLOCK_REWARD) AS total_rewards_earned
+FROM 
+    USER U
+    INNER JOIN BLOCK B ON U.PUBLIC_KEY = B.MINER_PUBLIC_KEY
+GROUP BY 
+    U.PUBLIC_KEY, U.USER_TYPE, U.BALANCE
+HAVING 
+    COUNT(B.HASH) >= 2
+ORDER BY 
+    total_blocks_mined DESC, total_rewards_earned DESC;
+
+
+Query 2: Find the wealthy users and see if they are running masternodes
+
+Information to gain: rate of wealthy users with masternodes and identify users that can afford a master node but are not partaking (potential master node operators)
+
+Business Use: One, this information can be used to identify security risks and enhancement opportunities. If only a few wealthy users run the masternodes, then this indicates centralization and a less secure network. On the other hand, the potential master node operators can be targeted to become operators which would increase the decentralization and therefore the security well. Two, if there are numerous wealthy users that are not operators then it may be necessary to simplify the master node set up or make a more attractive reward setup so more users will become operators
+
+SELECT 
+    U.PUBLIC_KEY,
+    U.USER_TYPE,
+    U.BALANCE,
+    M.MASTERNODE_ID,
+    M.STATUS,
+    M.TOTAL_REWARDS
+FROM 
+    USER U
+    LEFT OUTER JOIN MASTERNODE M ON U.PUBLIC_KEY = M.OPERATOR_PUBLIC_KEY
+WHERE 
+    U.BALANCE > 100
+ORDER BY 
+    M.TOTAL_REWARDS DESC;
+
+
+Query 3: Find the top ten most active users by transaction count
+
+Business Use: We can use this information in a number of ways. One, would be to track fees and figure out whether the fee tier is working. Two, would be to identify the behavioral patterns of the power users by tracking their peak times, if they pay for expedited transaction fees, etc. This would allow DASH to keep an eye on strange activity and identify whether top users are businesses or individuals.
+
+SELECT 
+    U.PUBLIC_KEY,
+    U.USER_TYPE,
+    U.BALANCE,
+    COUNT(DT.TRANSACTION_ID) AS total_transactions_sent,
+    ROUND(AVG(DT.FEE), 6) AS avg_fee,
+    ROUND(MIN(DT.FEE), 6) AS min_fee,
+    ROUND(MAX(DT.FEE), 6) AS max_fee,
+    ROUND(SUM(DT.FEE), 6) AS total_fees_paid
+FROM 
+    USER U
+    INNER JOIN DASH_TRANSACTION DT ON U.PUBLIC_KEY = DT.SENDER
+WHERE 
+    DT.STATUS = 'Confirmed'
+GROUP BY 
+    U.PUBLIC_KEY, U.USER_TYPE, U.BALANCE
+ORDER BY 
+    total_transactions_sent DESC
+LIMIT 10;
+
+
+Query 4: Find the professional operator who handle the main load of operations when the network is busy
+
+Business Use: One, it allows DASH to understand how much traffic its network can handle (ie limits and place with under use). This can help with plans for further growth in the network. Two, ensure it is not just a couple operators or miners handling the load as this is a security risk.
+
+SELECT 
+    B.HASH,
+    B.HEIGHT,
+    B.TIMESTAMP,
+    B.TRANSACTION_COUNT,
+    B.BLOCK_REWARD,
+    U.PUBLIC_KEY AS miner,
+    U.USER_TYPE,
+    U.BALANCE AS miner_balance
+FROM 
+    BLOCK B
+    INNER JOIN USER U ON B.MINER_PUBLIC_KEY = U.PUBLIC_KEY
+WHERE 
+    B.TRANSACTION_COUNT > 200
+    AND U.USER_TYPE IN ('Miner', 'Masternode_Operator')
+ORDER BY 
+    B.TRANSACTION_COUNT DESC, B.HEIGHT DESC;
