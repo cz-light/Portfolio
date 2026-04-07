@@ -1,18 +1,81 @@
-## Description
-This Portfolio demonstrates personal and academic projects to demonstrate me skills to potential employers.
+# Portfolio
 
-### Content Layout
-  - Each folder is labeled with the project name and contains a readme with a description of the project's process and what tools were used within the project
+A collection of personal and academic projects spanning systems programming, database design, and AI/ML applications.
 
-### Projects in this repository
-  - VulnDetective
-    - This project was research project was completed during an internship at Boise State in the summer of 2025. We researched ways to detect vulnerabilities within the smart contracts running Ethereum's blockchain.
-    - This project is not within this repository as my team had a seperate repository together: https://github.com/tesessa/LLM-SC-Vuln-Detection
-  - EMTALA
-    - A chatbot to describe the past cases on the HHS Enforcement Actions page (https://oig.hhs.gov/fraud/enforcement/?type=emtalapatient-dumping&page=)
-  - DashTransactionDatabase
-    - A SQL database of synthetic Dash transactions created for a database management class project to analyze spending patterns and detect anomalies.
-  - BasicShell
-    - A basic shell implemented in C for a systems programming class project to understand process management and command execution in Unix-like operating systems.
-  
+> **Note:** This repository is no longer actively updated, but is maintained as a display of completed work.
 
+---
+
+## Projects
+
+### 🔍 VulnDetective
+**Ethereum Smart Contract Vulnerability Detection**
+
+A research project completed during a summer internship at Boise State University, investigating the use of large language models to detect vulnerabilities in Ethereum smart contracts.
+
+- **Type:** Research / Internship
+- **Collaborators:** Team project
+- **Repository:** [LLM-SC-Vuln-Detection](https://github.com/tesessa/LLM-SC-Vuln-Detection) *(hosted separately)*
+
+---
+
+### 🏥 EMTALA Legal Assistant
+**RAG-Powered Chatbot for EMTALA Enforcement Cases**
+
+A retrieval-augmented generation (RAG) chatbot that helps lawyers, physicians, and medical staff navigate HHS enforcement actions related to the Emergency Medical Treatment and Labor Act (EMTALA). The source data comes from the [HHS OIG Enforcement Actions page](https://oig.hhs.gov/fraud/enforcement/?type=emtalapatient-dumping&page=), which is difficult to search manually.
+
+**Pipeline:**
+1. **Data Collection** — Scrapes EMTALA case data from HHS OIG using `requests` and `BeautifulSoup`, outputting structured JSON with case metadata (hospital, state, penalty amount, date, etc.)
+2. **Data Cleaning** — Manual review and normalization of AI-extracted metadata fields
+3. **Vector Database** — Embeds and stores case documents in a persistent ChromaDB vector store using OpenAI embeddings
+4. **Agent** — GPT-4o-mini powered agent that retrieves relevant case chunks and answers user queries with citations
+5. **Web App** — Streamlit frontend for interactive querying
+
+**Tech Stack:** Python, OpenAI API (GPT-4o-mini, embeddings), ChromaDB, Streamlit, BeautifulSoup, dotenv
+
+**To Run:**
+```bash
+# Add a .env file to src/ with your OpenAI key:
+# OPENAI_API_KEY=your_key_here
+
+python src/main.py
+```
+
+---
+
+### 💰 Dash Transaction Database
+**Synthetic Blockchain Transaction Database**
+
+A relational database modeling Dash cryptocurrency transactions, built for a database management class to practice schema design, ER modeling, and SQL querying. Since no public Dash transaction database exists, synthetic data was generated to mimic real-world patterns.
+
+**Schema includes:** Users, Blocks, Transactions, Masternodes
+
+**Files:**
+- `DASHdb.db` — SQLite database
+- `tableCreationSQL` — DDL for the full schema
+- `queries.txt` — Annotated sample queries for extracting insights and detecting anomalies
+- `data/` — CSV source files used to populate the database
+
+**Tech Stack:** SQLite, SQL, LucidChart (ER diagram)
+
+---
+
+### 🖥️ BasicShell
+**Unix Shell Implemented in C**
+
+A lightweight, Unix-like command-line shell written in C, built for a systems programming course to gain hands-on experience with process management, system calls, and I/O handling.
+
+**Features:**
+- Execute standard shell commands (`ls`, `ps`, etc.)
+- Directory navigation with `cd`
+- Input (`<`) and output (`>`) redirection
+- Background process execution with `&`
+- Clean exit with `exit`
+
+**To Run:**
+```bash
+gcc -o basicshell BasicShell.c
+./basicshell
+```
+
+**Tech Stack:** C, Unix system calls (`fork`, `exec`, `wait`, `dup2`)
