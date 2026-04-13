@@ -2,13 +2,11 @@
 
 A collection of personal and academic projects spanning systems programming, database design, and AI/ML applications.
 
-> **Note:** This repository is no longer actively updated, but is maintained as a display of completed work.
-
 ---
 
 ## Projects
 
-### 🔍 VulnDetective
+### VulnDetective
 **Ethereum Smart Contract Vulnerability Detection**
 
 A research project completed during a summer internship at Boise State University, investigating the use of large language models to detect vulnerabilities in Ethereum smart contracts.
@@ -19,7 +17,7 @@ A research project completed during a summer internship at Boise State Universit
 
 ---
 
-### 🏥 EMTALA Legal Assistant
+### EMTALA Legal Assistant
 **RAG-Powered Chatbot for EMTALA Enforcement Cases**
 
 A retrieval-augmented generation (RAG) chatbot that helps lawyers, physicians, and medical staff navigate HHS enforcement actions related to the Emergency Medical Treatment and Labor Act (EMTALA). The source data comes from the [HHS OIG Enforcement Actions page](https://oig.hhs.gov/fraud/enforcement/?type=emtalapatient-dumping&page=), which is difficult to search manually.
@@ -43,7 +41,21 @@ python src/main.py
 
 ---
 
-### 💰 Dash Transaction Database
+### Tech Layoffs SQL Analysis
+**Data Cleaning & Exploratory Analysis of Tech Industry Layoffs**
+
+A end-to-end SQL project cleaning and analyzing a dataset of tech industry layoffs spanning late 2022 to early 2023. Built to practice real-world data preparation and exploratory analysis workflows using MySQL.
+
+1. Cleaned raw data by standardizing formats, correcting country name inconsistencies, converting date strings to proper SQL DATE types, and removing uninformative null records
+3. Explored trends across companies, industries, countries, and time using aggregations, CTEs, window functions, and rolling totals
+   
+**Key finding:** January 2023 saw a dramatic spike in layoffs, with the United States and Consumer/Retail industries accounting for the largest share of total layoffs
+
+**Tech Stack:** MySQL, MySQL Workbench
+
+---
+
+### Dash Transaction Database
 **Synthetic Blockchain Transaction Database**
 
 A relational database modeling Dash cryptocurrency transactions, built for a database management class to practice schema design, ER modeling, and SQL querying. Since no public Dash transaction database exists, synthetic data was generated to mimic real-world patterns.
@@ -60,7 +72,7 @@ A relational database modeling Dash cryptocurrency transactions, built for a dat
 
 ---
 
-### 🖥️ BasicShell
+### BasicShell
 **Unix Shell Implemented in C**
 
 A lightweight, Unix-like command-line shell written in C, built for a systems programming course to gain hands-on experience with process management, system calls, and I/O handling.
