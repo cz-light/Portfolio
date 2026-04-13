@@ -72,6 +72,8 @@ An interactive Tableau dashboard exploring global video game sales trends across
 
 [View Dashboard on Tableau Public](https://public.tableau.com/app/profile/cora.zeger/viz/VideoGameSalesDashboard_17761065420620/VideoGameSaleDashboard#2)
 
+[Dataset from Kaggle](https://www.kaggle.com/datasets/gregorut/videogamesales?resource=download)
+
 ---
 
 ### Dash Transaction Database
