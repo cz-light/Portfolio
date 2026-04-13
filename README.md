@@ -55,6 +55,25 @@ A end-to-end SQL project cleaning and analyzing a dataset of tech industry layof
 
 ---
 
+### Video Game Sales Dashboard
+**Interactive Tableau Dashboard for Global Video Game Sales Analysis**
+
+An interactive Tableau dashboard exploring global video game sales trends across genres, platforms, and regions using a dataset of thousands of game titles spanning 1980–2020.
+
+**Visualizations include:**
+
+**Area chart —** Genre sales over time, showing the rise and decline of the industry with Action and Sports dominating the peak years around 2008–2009
+
+**Dual bar chart —** Global sales vs. global sales minus EU by genre, highlighting the EU market's contribution across categories
+
+**Bar chart —** Top 10 platforms by global sales, with PS2 leading all platforms
+
+**Tech Stack:** Tableau Public, Kaggle Video Game Sales Dataset
+
+[View Dashboard on Tableau Public](https://public.tableau.com/app/profile/cora.zeger/viz/VideoGameSalesDashboard_17761065420620/VideoGameSaleDashboard#2)
+
+---
+
 ### Dash Transaction Database
 **Synthetic Blockchain Transaction Database**
 
